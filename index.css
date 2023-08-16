@@ -1,0 +1,324 @@
+*{
+    /* border: 1px solid; */
+    font-family: system-ui;      
+}
+/*for body */
+body{
+    margin: auto;
+    width: auto;
+    
+}
+/*header*/
+header{
+    height: 20%;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+}
+
+/*For all a tags*/
+a{
+    text-decoration: none;
+    color: black;
+}
+
+/*Navbar logo*/
+.navbar img{
+    height: 70px;
+    width: auto;
+}
+
+/*navbar*/
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.navbar a{
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.navbar a:hover{
+    border-bottom: 1.5px solid black;
+}
+
+.navbar .logout-btn{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+.logout-btn:hover{
+    border-bottom: 1.5px solid black;
+}
+
+/*About or some random texts*/
+.texts{
+    background-color: #010101;
+    background-image: url(images/wp11163641-black-and-white-music-wallpapers.jpg);
+    color: #e0e0e0;
+    text-align: center;
+    padding: 4rem 14rem;
+}
+
+.texts h1{
+    font-family: sans-serif;
+    font-weight: bold;
+    padding-top: 40px;
+}
+
+.texts p{
+    font-size: larger;
+    font-family: cursive;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/*Start Shopping button*/
+.texts a button{
+    cursor: pointer;
+    font-weight: 500;
+    width: 180px;
+    height: 45px;
+    background-color: #8fb4ff;
+    border-radius: 15px;
+    border: none;
+}
+
+.texts a button:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    box-shadow: 5px 5px 5px rgb(75, 89, 93);
+}
+
+/*Product section*/
+.pmain{
+    /* height: 100%; */
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.prev,.next{
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+.prev{
+    margin-left: 10%;
+}
+.product{
+    width: 20%;
+    text-align: center;
+}
+
+.product ul{
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+.product-scroll{
+    width: auto;
+    display: flex;
+    padding: 10px 20px;
+}
+
+.product-scroll img{
+    width: 750px;
+    height: 350px;
+    padding: 10px;
+}
+
+.featured{
+    padding: 10px 30px;
+}
+
+.featured_products{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px 10px 0;
+    
+}
+
+.featured_product{
+    width: 250px;
+    height: 400px;
+    padding: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.featured_product a p{
+    font-size: 25px;
+    margin: 0;
+    padding: 10px;
+}
+
+.featured_products img{
+    width: 250px;
+    height: 250px;
+}
+/* *{border: 1px solid red;} */
+
+.featured_product form input, .trending_products form input{
+    background-color: #F96167;
+    width: 8em;
+    height: 3em;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.featured_product form input:hover, .trending_products form input:hover{
+    background-color: #E2D1F9;
+    color: rgb(0, 0, 0);
+}
+
+.trending{
+    padding: 10px 30px;
+}
+
+.trend{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px 10px 0;
+    
+}
+
+.trending_products{
+    width: 250px;
+    height: 400px;
+    padding: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.trending_products a p{
+    font-size: 25px;
+}
+
+.trending_products img{
+    width: 250px;
+    height: 250px;
+}
+
+.footer{
+    background-color: #d6e2e7;
+    display: flex;
+    padding: 15px 30px;
+    text-align: center;
+    margin: 0;
+}
+
+.categories ul li a,.links ul li a{
+    font-size: 20px;
+    color: grey;
+}
+
+.categories ul li a:hover,.links ul li a:hover{
+    color: rgb(27, 27, 27);
+    border-bottom: 1px solid;
+}
+
+.categories, .links{
+    width: 25%;
+}
+
+.contact-us{
+    width: 50%;
+}
+
+.contact-us form textarea{
+    padding: 10px;
+    border-radius: 15px;
+    font-weight: 500;
+}
+.contact-us form textarea:focus{
+    box-shadow: 10px 10px 5px lightblue;
+}
+
+.social{
+    margin: 0;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.socials a img{
+    width: auto;
+    height: 25px;
+    padding-right: 20px;
+}
+
+.sendbtn{
+    width: 5em;
+}
+
+.card,.orders{
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    padding: 25px;
+    margin: 15px 50px;
+    border: 2px solid;
+    border-radius: 15px;
+    text-align: center;
+    /* color: azure; */
+    backdrop-filter: blur(25px);
+    font-weight: 700;
+}
+
+.cart img{
+    width: 100px;
+    border-radius: 8px;
+}
+.cart table tr th, .cart table tr td, .orders table tr th, .orders table tr td{
+    padding: 15px 40px;
+}
+
+.cart table tr th, .orders table tr th{
+    border-bottom: 1px solid;
+}
+
+.cart table tr td{
+    font-weight: 600;
+}
+.cart p{
+    font-weight: 700;
+}
+.cart table tr td form input{
+    border: none;
+    
+    background: transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+}
+.cart button{
+    border: none;
+    padding: 10px 20px;
+    background: #F96167;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+}
+.cart button:hover, .cart table tr td form input:hover{
+    color: antiquewhite;
+    
+}
+.cart_body{
+    background-image: url(images/uwp3855176.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    backface-visibility: hidden;
+    padding: 25px 0;
+    /* background-position: center; */
+    
+}
