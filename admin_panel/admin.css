@@ -91,8 +91,11 @@ a{
     margin: 20px;
     cursor: pointer;
     color: white;
-    background-color: #8AAAE5;
+    background-image: url(../images/wp11930579-music-black-and-white-wallpapers.jpg);
+    background-size: cover;
+    background-blend-mode: exclusion;
     box-shadow: 10px 10px 5px rgb(75, 89, 93);
+    
 }
 
 .side-nav form input:hover{

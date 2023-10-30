@@ -23,7 +23,7 @@
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
 
     <!-- Link to css -->
-    <link rel="stylesheet" href="index.css?v=1">
+    <link rel="stylesheet" href="index.css?v1">
 </head>
 <body>
  

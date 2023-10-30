@@ -10,7 +10,17 @@ $user = $_SESSION['username'];
 
 ?>
 
-
+<style>
+    .cart_body{
+        color: white;
+    }
+    .remove{
+        color: white;
+    }
+    .remove:hover{
+        color: maroon;
+    }
+</style>
 
 <div class="cart_body">
 <div class="card">
@@ -38,9 +48,9 @@ $user = $_SESSION['username'];
                             <td><p><?=$row['product']?></p></td>
                             <td><?=$p['qty']?></td>
                             <td><form action="removecart.php?id=<?=$row['pid']?>" method="post">
-                                <input type="submit" value="Remove" name="rem">
+                                <input type="submit" value="Remove" name="rem" class="remove">
                             </form></td>
-                            <td><p>Nrs. <?=$p['price']?></p></td>
+                            <td><p>Rs. <?=$p['price']?></p></td>
                         </tr>
                         
                     <?php
@@ -109,7 +119,7 @@ $user = $_SESSION['username'];
 
             <!-- Cart payed -->
             <?php
-                $sql = mysqli_query($conn,"SELECT DISTINCT * FROM `c_order` join cart on c_order.id = cart.id join product on cart.pid = product.pid WHERE c_order.username = '$user'");
+                $sql = mysqli_query($conn,"SELECT DISTINCT *, cart.price AS actual FROM `cart` join c_order on c_order.id = cart.id join product on cart.pid = product.pid WHERE c_order.username = '$user' AND cart.status = 'payed'");
                 if(($num = mysqli_num_rows($sql)) > 0){
             ?>
             <h2 id="cart_orders">Cart Orders</h2>
@@ -129,30 +139,34 @@ $user = $_SESSION['username'];
                     $date = $o['date'];
                     $time = $o['time'];
                     $cid = $o['id'];
-                    $query = mysqli_query($conn,"SELECT DISTINCT * FROM cart WHERE id = $cid AND username = '$user' AND time = '$time' AND date = '$date'");
-                    while($row = mysqli_fetch_assoc($query)){
-                        $id = $row['pid'];
-                        $pro = mysqli_query($conn,"SELECT * FROM product where pid = $id");
+                   // $sql1 = mysqli_query($conn,"SELECT * FROM `cart` join c_order on c_order.id = cart.id join product on cart.pid = product.pid WHERE c_order.username = '$user' AND c_order.status = 'pending' AND cart.status = 'payed'");
+                   // $query = mysqli_query($conn,"SELECT DISTINCT * FROM cart WHERE id = $cid AND username = '$user' AND time = '$time' AND date = '$date'");
+                    // while($row = mysqli_fetch_assoc($query)){
+                      //  while($row = mysqli_fetch_assoc($sql1)){
+                      //  $id = $row['pid'];
+                     //   echo $id;
+                        // $pro = mysqli_query($conn,"SELECT * FROM product where pid = $id");
                         ?>
                         <tr>
                             <td><?=$o['id']?></td>
                             <td><p>
                             <?php
-                                while($p = mysqli_fetch_assoc($pro)){
-                                    echo $p['product'] . ' [' . $row['qty'] . '],';
-                                }
+                                // while($p = mysqli_fetch_assoc($pro)){
+                                    // echo $p['product'] . ' [' . $row['qty'] . '],';
+                                    echo $o['product'] . ' [' . $o['qty'] . '],';
+                                // }
                                 $stat = mysqli_query($conn,"SELECT * FROM c_order WHERE id = $cid");
                                 $stt = mysqli_fetch_assoc($stat);
                             ?>
                             </p></td>
                             <td><p><?=$date?></p></td>
-                            <td><p>Nrs. <?=$o['price']?></p></td>
+                            <td><p>Nrs. <?=$o['actual']?></p></td>
                             <td><p><?=$stt['status']?></p></td>
                         </tr>
 
                     <?php
                         
-                    }
+                    
                 } 
             
         ?>

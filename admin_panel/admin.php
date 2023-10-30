@@ -11,36 +11,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="admin.css?=1">
-    <style>
-       .product-form{
-              /* border: 1px solid red; */
-              width: 60%;
-              display: grid;
-              justify-content: center;
-              margin-left: 10px;
-       }
-       .product-form input{
-              border-radius: 10px;
-              border: none;
-              padding: 2px;
-       }
-       .product-form label{
-              padding: 5px;
-       }
-       .product-form .submit{
-              width: 10em;
-              display: block;
-              justify-self: center;
-              cursor: pointer;
-       }
-       .product-form .submit:hover{
-              background-color: #575757;
-              color: antiquewhite;
-              border: 1px solid;
-
-       }
-    </style>
+    <link rel="stylesheet" href="admin.css?v1">
+    
 </head>
 <body>
 <?php if (isset($_GET['error'])): ?>
@@ -71,6 +43,7 @@ session_start();
                             <a href="sale.php"><input type="button" value="Products For Sale" name="sale"></a>
                             <a href="rental.php"><input type="button" value="Rental Requests" name="rental"></a>
                             <a href="orders.php"><input type="button" value="Orders" name="orders"></a>
+                            <a href="msg.php"><input type="button" value="Message" name="message" id="msg"></a>
                      </form>
 
               </div> <!-- side nav end -->

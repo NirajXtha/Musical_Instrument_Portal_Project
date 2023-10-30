@@ -10,8 +10,9 @@
 ?>
 <style>
     .section{
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 1rem;
         /* margin: 10px 25px; */
         padding: 20px 35px;
         background-image: url(images/uwp3814594.jpeg);
@@ -28,6 +29,7 @@
         text-align: center;
         backdrop-filter: blur(10px);
         padding-bottom: 10px;
+        max-width: 16rem;
     }
     .view a{
         padding: 10px;
@@ -46,17 +48,17 @@
         padding: 0px;
     }
     .cards{
-        display: flex;
+        /* display: flex; */
         /* justify-content: center; */
         border-radius: 10px;
         overflow: hidden;
         width: auto;
-        max-width: 25rem;
+        
         height: 20rem;
         flex-direction: column;
         text-align: center;
         border: 1px solid;
-        padding: 10px;
+        padding: 5px;
     }
     form input{
         background-color: #F96167;
@@ -75,7 +77,7 @@
     }
     .cards img{
         width: auto;
-        max-width: 24rem;
+        max-width: 14rem;
         height: 16rem;
         border-radius: 10px;
         border: none;
@@ -93,10 +95,22 @@
     if($type == "products"){
         $sql = mysqli_query($conn,"SELECT * FROM product");
         if($sql){
-        while($result = mysqli_fetch_assoc($sql)){ $id=$result['pid']; ?>
+        while($result = mysqli_fetch_assoc($sql)){ 
+            $id=$result['pid'];
+            $check = mysqli_query($conn,"SELECT * FROM sale WHERE pid = $id"); 
+            ?>
             <div class="view">
                 <a href="view_product.php?id=<?=$id?>"><img src="images/<?=$result['img_url']?>" width="200px" height="200px" alt=""></a>
                 <a href="view_product.php?id=<?=$id?>"><?php echo $result['product']; ?></a>
+                <?php
+                    if(mysqli_num_rows($check) == 0){?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$result['price']?></a>
+                    <?php }else{
+                        $sale = mysqli_fetch_assoc($check); ?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$sale['sale_amt']?></a>
+                    <?php }
+                ?>
+                
                 <form action="buy.php?id=<?=$id?>&type=product" method="post">
                     <input type="submit" value="Buy Now" name="buy" class="buy-btn">
                     <input type="submit" value="Add To Cart" name="cart" class="cart-btn">
@@ -110,7 +124,7 @@
     elseif($type == "brands"){
         $sql = mysqli_query($conn, "SELECT DISTINCT brand from product");
         $result = "";
-        echo '<div class="container">';
+        
         while($result = mysqli_fetch_array($sql)){
             // echo $result['brand']; 
             echo 
@@ -121,7 +135,7 @@
                 </div>
             ';
         }
-        echo '</div>';
+        
     }
     else{
         $stype = strtolower($type);
@@ -129,10 +143,20 @@
         if(mysqli_num_rows($query) == 0){
         $sql = mysqli_query($conn,"SELECT * FROM product WHERE brand = '$type'");
         if($sql){
-            while($result = mysqli_fetch_assoc($sql)){ $id=$result['pid']; ?>
+            while($result = mysqli_fetch_assoc($sql)){ $id=$result['pid']; 
+                $check = mysqli_query($conn,"SELECT * FROM sale WHERE pid = $id");?>
                 <div class="view">
                     <a href="view_product.php?id=<?=$id?>"><img src="images/<?=$result['img_url']?>" width="200px" height="200px" alt=""></a>
                     <a href="view_product.php?id=<?=$id?>"><?php echo $result['product']; ?></a>
+                    <?php
+                    if(mysqli_num_rows($check) == 0){?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$result['price']?></a>
+                    <?php }else{
+                        $sale = mysqli_fetch_assoc($check); ?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$sale['sale_amt']?></a>
+                    <?php }
+                ?>
+                    
                     <form action="buy.php?id=<?=$id?>&type=product" method="post">
                     <input type="submit" value="Buy Now" name="buy" class="buy-btn">
                     <input type="submit" value="Add To Cart" name="cart" class="cart-btn">
@@ -142,10 +166,19 @@
            else{
                 $query = mysqli_query($conn,"SELECT * FROM product WHERE p_type = '$type' OR p_type = '$stype'" );
                 while($result = mysqli_fetch_assoc($query)){ 
-                    $id=$result['pid']; ?>
+                    $id=$result['pid']; 
+                    $check = mysqli_query($conn,"SELECT * FROM sale WHERE pid = $id");?>
                     <div class="view">
                         <a href="view_product.php?id=<?=$id?>"><img src="images/<?=$result['img_url']?>" width="200px" height="200px" alt=""></a>
                         <a href="view_product.php?id=<?=$id?>"><?php echo $result['product']; ?></a>
+                        <?php
+                    if(mysqli_num_rows($check) == 0){?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$result['price']?></a>
+                    <?php }else{
+                        $sale = mysqli_fetch_assoc($check); ?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$sale['sale_amt']?></a>
+                    <?php }
+                    ?>
                         <form action="buy.php?id=<?=$id?>&type=product" method="post">
                     <input type="submit" value="Buy Now" name="buy" class="buy-btn">
                     <input type="submit" value="Add To Cart" name="cart" class="cart-btn">
@@ -160,10 +193,19 @@
 else{
     $sql = mysqli_query($conn,"SELECT * FROM product");
         if($sql){
-        while($result = mysqli_fetch_assoc($sql)){ $id=$result['pid']; ?>
+        while($result = mysqli_fetch_assoc($sql)){ $id=$result['pid']; 
+            $check = mysqli_query($conn,"SELECT * FROM sale WHERE pid = $id");?>
             <div class="view">
                 <a href="view_product.php?id=<?=$id?>"><img src="images/<?=$result['img_url']?>" width="200px" height="200px" alt=""></a>
                 <a href="view_product.php?id=<?=$id?>"><?php echo $result['product']; ?></a>
+                <?php
+                    if(mysqli_num_rows($check) == 0){?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$result['price']?></a>
+                    <?php }else{
+                        $sale = mysqli_fetch_assoc($check); ?>
+                        <a href="view_product.php?id=<?=$id?>"><?=$sale['sale_amt']?></a>
+                    <?php }
+                ?>
                 <form action="buy.php?id=<?=$id?>&type=product" method="post">
                     <input type="submit" value="Buy Now" name="buy" class="buy-btn">
                     <input type="submit" value="Add To Cart" name="cart" class="cart-btn">

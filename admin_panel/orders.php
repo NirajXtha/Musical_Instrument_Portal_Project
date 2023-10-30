@@ -56,7 +56,7 @@
             color: antiquewhite;
         }
         table{
-            backdrop-filter: blur(35px);
+            backdrop-filter: blur(50px);
             text-align: center;
             font-weight: 600;
             border-radius: 15px;
@@ -140,7 +140,6 @@
             <th>Products</th>
             <th>Username</th>
             <th>Date</th>
-            <th>Quantity</th>
             <th>Price</th>
             <th>District</th>
             <th>Municipality</th>
@@ -151,17 +150,21 @@
             <th colspan="2">Action</th>
         </tr>
         <?php
-            $sql = mysqli_query($conn,"SELECT DISTINCT * FROM `c_order` join cart on c_order.id = cart.id join product on cart.pid = product.pid WHERE c_order.status = 'pending' AND cart.status = 'payed'");
+            $sql = mysqli_query($conn,"SELECT DISTINCT * FROM `c_order` WHERE status = 'pending'");
             if($sql){
                 while($row = mysqli_fetch_assoc($sql)){ 
-                    $id = $row['id'];?>
+                    $id = $row['id'];
+                    $order = mysqli_query($conn,"SELECT DISTINCT * FROM cart join product on cart.pid = product.pid WHERE cart.status = 'payed' AND id = '$id'");
+                    ?>
                     <tr>
                         <td><?=$row['id']?></td>
-                        <td><?=$row['product']?></td>
+                        <td><?php while($c_ord = mysqli_fetch_assoc($order)){
+                            echo $c_ord['product'] . "[" . $c_ord['qty'] . "], <br>";
+                            }
+                            ?></td>
                         <td><?=strtoupper($row['username'])?></td>
                         <td><?=$row['date']?></td>
-                        <td><?=$row['qty']?></td>
-                        <td><?=$row['qty']*$row['price']?></td>
+                        <td><?=$row['price']?></td>
                         <td><?=$row['district']?></td>
                         <td><?=$row['municipality']?></td>
                         <td><?=$row['tole']?></td>

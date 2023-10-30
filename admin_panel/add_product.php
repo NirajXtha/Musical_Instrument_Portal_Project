@@ -1,7 +1,7 @@
 <?php 
-
+include "dbconfig.php";
 if (isset($_POST['submit']) && isset($_FILES['image'])) {
-	include "dbconfig.php";
+	
 	
 	echo "<pre>";
 	print_r($_FILES['image']);
@@ -28,18 +28,19 @@ if (isset($_POST['submit']) && isset($_FILES['image'])) {
 
 				$new_img_name = uniqid("IMG-",true).'.'.$img_ex;
 				$img_upload_path = '../images/'.$new_img_name;
-				move_uploaded_file($tmp_name, $img_upload_path);
+				
 
 				// Insert into Database
-				$sql = "INSERT INTO product(img_url,product,p_type,brand,price,detail) 
-				        VALUES('$new_img_name','$product','$type','$brand','$price','$detail')";
-				$result = mysqli_query($conn, $sql);
+				$sql = 'INSERT INTO product(img_url,product,p_type,brand,price,detail) VALUES ("'.$new_img_name.'","'.$product.'","'.$type.'","'.$brand.'","'.$price.'","'.$detail.'")';
+				$result = mysqli_query($conn,$sql);
 
                 if(!$result){
                     echo '<script> alert("Something went wrong!"); window.history.back();</script>';
+					// echo $product . $price . $new_img_name . $type . $brand . $detail;
+                }else{
+					move_uploaded_file($tmp_name, $img_upload_path);
+					echo '<script> alert("Successfully inserted!"); window.history.back();</script>';
                 }
-				echo '<script> alert("Successfully inserted!"); window.history.back();</script>';
-                
 
 		}
 	}else {

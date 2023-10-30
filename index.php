@@ -18,7 +18,6 @@
             <h3>Products</h3>
             <ul>
                 <li><a href="all.php?type=midi">Audio Interface</a></li><hr>
-                <li><a href="all.php?type=dj">DJ Controllers</a></li><hr>
                 <li><a href="all.php?type=guitar">Guitars</a></li><hr>
                 <li><a href="all.php?type=Keyboard">Keyboards</a></li><hr>
                 <li><a href="all.php?type=mic">Microphones</a></li><hr>
@@ -37,7 +36,7 @@
             <a href="all.php?type=Keyboard" class="myslide"><img src="images/key_showcasr.jfif" alt=""></a>
             <a href="all.php?type=midi" class="myslide"><img src="images/midi_showcase.jpeg" alt=""></a>
             <a href="all.php?type=mic" class="myslide"><img src="images/mic_showcase.jfif" alt=""></a>
-            <a href="all.php?type=headset" class="myslide"><img src="images/headset_showcase.jfif" alt=""></a>
+            <!-- <a href="all.php?type=headset" class="myslide"><img src="images/headset_showcase.jfif" alt=""></a> -->
             
         </div>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -63,7 +62,15 @@
                 <a href="view_product.php?id=<?=$id?>"><img src="images/<?=$img?>"></a>
                 <p><?=$name?>
                     <br>
-                    <p><?=$price?></p>
+                    <?php $check = mysqli_query($conn,"SELECT * FROM sale WHERE pid = $id");
+                    if(mysqli_num_rows($check) == 0){?>
+                        <p><?=$price?></p>
+                    <?php }else{
+                        $sale = mysqli_fetch_assoc($check);
+                        ?>
+                        <p><?=$sale['sale_amt']?></p>
+                    <?php }?>
+                    
                 </p>
                 <form action="buy.php?id=<?=$id?>&type=product" method="post">
                     <input type="submit" value="Buy Now" name="buy" class="buy-btn">

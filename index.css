@@ -14,6 +14,7 @@ header{
     padding: 0px;
     margin: 0px;
     width: auto;
+    
 }
 
 /*For all a tags*/
@@ -314,11 +315,10 @@ a{
     
 }
 .cart_body{
-    background-image: url(images/uwp3855176.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    backface-visibility: hidden;
+
     padding: 25px 0;
+    background-color: black;
+
     /* background-position: center; */
     
 }

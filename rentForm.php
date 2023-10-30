@@ -37,16 +37,16 @@
         <div class="pay-body">
             <div class="pay">
                 <h2>Payment Method</h2>
-                <p>Esewa number: +977 9841902307</p>
-                <p>Esewa Name: Niraj Shrestha</p><br>
+                <h3>Esewa number: +977 9841902307</h3>
+                <h3>Esewa Name: Niraj Shrestha</h3><br>
                 <form action="rform.php?id=<?=$id?>&price=<?=$price?>" method="POST" enctype="multipart/form-data">
                     <label for="hours">Hours:</label>
                     <input type="number" name="hour" id="hour" value="1" min="1" max="24"
                     title="Each set can only be rented for 24 hours max"
                     onkeydown='checkHours()'><br><br>
-                    <label for="price">Price: <b id="price"></b></label><br>
+                    <label for="price">Price: Rs. <b id="price"></b></label><br>
                     <label for="date">Date:</label>
-                    <input type="date" name="date" id="" required><br><br>
+                    <input type="date" name="date" id="" required><br><i>Renting must be a day after the payment has been done</i><br><br>
                     <label for="time">Time:</label>
                     <input type="time" name="time" min="07:00" max="18:00" required><br>
                     <i><small>Rental time is from 7am to 9pm</small></i><br>

@@ -28,9 +28,17 @@
         <div class="pay-body">
             <div class="pay">
                 <h2>Payment Method</h2>
-                <label for="Esewa">Esewa number: +977 9841902307</label><br>
-                <label for="Esewa">Esewa Name: Niraj Shrestha</label><br><br>
-                <?php $id = $_GET['id']; ?>
+                <label for="Esewa"><h3>Esewa number: +977 9841902307</h3></label>
+                <label for="Esewa"><h3>Esewa Name: Niraj Shrestha</h3></label>
+                <?php 
+                $sql = mysqli_query($conn,"SELECT DISTINCT * FROM cart WHERE username = '$user' AND status = 'pending'");
+                $price = 0;
+                while($p = mysqli_fetch_assoc($sql)){
+                    $price = $price + $p['price'];
+                }
+                $id = $_GET['id']; 
+                ?>
+                <h4>Total: Rs. <?=$price?></h4>
                 <form action="cartPay.php?id=<?=$id?>" method="post" enctype="multipart/form-data">
                     <label for="District">District</label>
                     <select name="district" class="" required>

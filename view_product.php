@@ -92,7 +92,7 @@ h1{
             <br>
             <br>
             <form action="addtocart.php?id=<?=$id?>" method="post">
-                <label for="Quantity">Quantity</label>
+                <label for="Quantity" max="10">Quantity</label>
                 <input type="number" name="quantity" value="1"><br><br>
                 <input type="submit" value="ADD TO CART" name="cart" class="cart">
             </form>

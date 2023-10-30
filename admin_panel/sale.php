@@ -20,7 +20,7 @@ session_start();
             font: serif;
         }
         body{
-            background-image: url(../images/wallhaven-sushi.jpg);
+            background-image: url(../images/g3.jpg);
             background-size: cover;
             background-repeat: no-repeat;
         }

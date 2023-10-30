@@ -17,16 +17,17 @@
             font-weight: 600;
             font-size: 1em;
             font-family: system-ui;
+            color: antiquewhite;
             /* border: 1px solid red; */
         }
         body{
             background-color: #79A7D3;
-            background-image: url(../images/wallhaven-weldm7.jpg);
+            background-image: url(../images/g3.jpg);
             backdrop-filter: blur(12px);
         }
         a{
             text-decoration: none;
-            color: black;
+            
             font-weight: 600;
             font-size: 20px;
             position: relative;

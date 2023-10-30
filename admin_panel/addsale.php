@@ -21,7 +21,7 @@ session_start();
             /* flex-direction: column; */
             justify-content: center;
             margin-top: 25px;
-            background-image: url(../images/wallhaven-weldm7.jpg);
+            background-image: url(../images/g3.jpg);
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -107,7 +107,7 @@ session_start();
                             
                         }else{
                             $amt = $_POST['amt'];
-                            $query = mysqli_query($conn,"INSERT INTO sale (pid,sale_amt) VALUES('.$pid.','.$amt.')");
+                            $query = mysqli_query($conn,"INSERT INTO sale (pid,sale_amt) VALUES('$pid','$amt')");
                             if($query){
                                 echo '<script>alert("Inserted Successfully")</script>';
                                 
@@ -120,7 +120,7 @@ session_start();
                     if(isset($_POST['delete'])){
                         $del = mysqli_query($conn, "DELETE FROM sale WHERE pid = '$id'");
                         if($del){
-                            echo '<script>alert("Deleted Successfully")</script>';
+                            echo '<script>alert("Deleted Successfully");location.assign("sale.php")</script>';
                         }
                     }
                 ?>

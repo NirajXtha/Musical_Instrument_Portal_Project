@@ -22,22 +22,16 @@
             <br>
             <?php
             // Database connection details
-            $host = 'localhost';
-            $db   = 'project_portal';
-            $user = 'root';
-            $pass = '';
-
-            // Connect to the database
-            $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+            include 'dbconfig.php';
 
             // Function to check if username already exists
             function usernameExists($username, $conn) {
-                $query = "SELECT username FROM users WHERE username = :username";
-                $stmt = $conn->prepare($query);
-                $stmt->bindParam(':username', $username);
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                return ($result !== false);
+                $query = "SELECT * FROM users WHERE username = '$username'";
+                $stmt = mysqli_query($conn,$query);
+                
+                if(mysqli_num_rows($stmt) > 0){
+                    return True;
+                }
             }
 
             // Process the form submission
@@ -53,14 +47,13 @@
                     echo "<br>";
                 } else {
                     // Insert the new user into the database
-                    $query = "INSERT INTO users (username, password, email) VALUES (:username, :password, :email)";
-                    $stmt = $conn->prepare($query);
-                    $stmt->bindParam(':username', $username);
-                    $stmt->bindParam(':password', $password);
-                    $stmt->bindParam(':email', $email);
-                    $stmt->execute();
+                    $query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+                    $stmt = mysqli_query($conn,$query);
+                    if($stmt){
+                        header('location:login.php');
+                    }
 
-                    header('location:login.php');
+                    
                 }
             }
             ?>

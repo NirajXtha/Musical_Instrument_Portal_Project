@@ -21,8 +21,8 @@
         }
         body{
             background-color: #79A7D3;
-            background-image: url(../images/wallhaven-weldm7.jpg);
-            backdrop-filter: blur(12px);
+            background-image: url(../images/g3.jpg);
+            backdrop-filter: blur(10px);
         }
         a{
             text-decoration: none;
@@ -48,7 +48,7 @@
             border-radius: 6px;
             padding: 3px;
             border: 1px solid;
-            color: #1f1f1f;
+            /* color: #1f1f1f; */
         }
         #file{
             border: none;
@@ -58,12 +58,12 @@
             grid-column: 2;
             cursor: pointer;
             height: 2.2em;
-            
+            background-color: #CC313D;
         }
         .submit:hover{
-            background-color: #CC313D;
-            color: antiquewhite;
-            border: 1px solid red;
+            background: antiquewhite;
+            color: #1f1f1f;
+            border: 1px solid;
         }
         .desc{
             font-weight: 300;
@@ -81,10 +81,16 @@
         }
         table tr td, th{
             padding: 5px;
-            color: #1f1f1f;
+            
+        }
+        input,textarea{
+            color: black;
         }
         table input{
-            color: #1f1f1f;
+            color: antiquewhite;
+        }
+        table input:hover{
+            color: #CC313D;
         }
         
     </style>

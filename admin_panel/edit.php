@@ -37,7 +37,7 @@ session_start();
             /* flex-direction: column; */
             justify-content: center;
             margin-top: 25px;
-            background-image: url(../images/wallhaven-weldm7.jpg);
+            background-image: url(../images/g3.jpg);
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -104,7 +104,6 @@ session_start();
                 <h3>Price: <input type="number" name="amt" value="<?php echo $row['price'];?>"></h3>
                 <h3>Change Image: <input type="file" name="img"></h3>
                 <input type="submit" name="edit" value="Edit" class="btn">
-                    
                 </form>
             </div>
         </div>
@@ -123,7 +122,7 @@ session_start();
             $a = $_POST['amt'];
             $id = $_GET['pid'];
             if(empty($_FILES['img'])){
-                $q = mysqli_query($conn,"Update product set product = '$p', p_type = '$t', brand = '$b', price = $a WHERE pid = $id");
+                $q = mysqli_query($conn,'Update product set product = "'.$p.'", p_type = "'.$t.'", brand = "'.$b.'", price = '.$a.' WHERE pid = '.$id);
                 if($q){
                     echo '<script>alert("Successfully Updated!"); window.history.back();</script>';
                 }

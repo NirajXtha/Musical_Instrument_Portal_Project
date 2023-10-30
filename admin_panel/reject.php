@@ -12,7 +12,11 @@
     if($type == 'rent'){
         $sql = mysqli_query($conn,"UPDATE r_order SET status = 'rejected' WHERE id = $id");
         if($sql){
-            echo '<script>alert("Successfully rejected"); location.assign("rental.php")</script>';
+            $rent = mysqli_query($conn,"UPDATE rent SET username = '' WHERE rid = $id");
+            if($rent){
+                echo '<script>alert("Successfully rejected"); location.assign("rental.php")</script>';
+            }
+            
         }
         else{
             echo '<script>alert("Something Went Wrong!"); location.assign("rental.php")</script>';

@@ -28,9 +28,19 @@
         <div class="pay-body">
             <div class="pay">
                 <h2>Payment Method</h2>
-                <label for="Esewa">Esewa number: +977 9841902307</label><br>
-                <label for="Esewa">Esewa Name: Niraj Shrestha</label><br><br>
-                
+                <label for="Esewa"><h3>Esewa number: +977 9841902307</h3></label>
+                <label for="Esewa"><h3>Esewa Name: Niraj Shrestha</h3></label>
+                <?php
+                    $sql = mysqli_query($conn,"SELECT * FROM product WHERE pid = $id");
+                    $check = mysqli_query($conn, "SELECT * FROM sale WHERE pid = $id");
+                    $pro = mysqli_fetch_assoc($sql);
+                    $sale = mysqli_fetch_assoc($check);
+                    if(mysqli_num_rows($check) == 0){
+                        echo "<h4>Price: Rs." . $pro['price'] . "</h4>";
+                    }else{
+                        echo "<h4>Price: Rs." . $sale['sale_amt'] . "</h4>";
+                    }
+                ?>
                 <form action="buyForm.php?id=<?=$id?>" method="post" enctype="multipart/form-data">
                     <label for="District">District</label>
                     <select name="district" class="" required>
@@ -116,9 +126,9 @@
                     <label for="tole">Village/Tole</label>
                     <input type="text" name="tole" id="" required><br><br>
                     <label for="ward">Ward No.</label>
-                    <input type="number" name="ward" id="" required><br><br>
+                    <input type="number" name="ward" min="1" id="" required><br><br>
                     <label for="number">Phone Number:</label>
-                    <input type="number" name="ph" required><br><br>
+                    <input type="number" name="ph" maxlength="10" required><br><br>
                     <label for="payment">Payment Receipt:</label>
                     <input type="file" name="image" id="" required><br><br>
                     <input type="submit" name="pay">
