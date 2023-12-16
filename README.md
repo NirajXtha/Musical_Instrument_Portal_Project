@@ -9,7 +9,7 @@ This is an individual project created for the purpose of showcasing the understa
 ### :camera: Screenshots
 
 <div align="center"> 
-  ![music-ss1](https://github.com/NirajXtha/Musical_Instrument_Portal_Project/assets/131285987/42ec23b6-ec15-428d-be91-672303ae0c3f)
+  <img src="https://i.ibb.co/fkX8b8d/music-ss1.png" alt="music-ss1" border="0" />
 </div>
 
 
