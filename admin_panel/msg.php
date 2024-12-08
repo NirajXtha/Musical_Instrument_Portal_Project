@@ -96,7 +96,7 @@
         </tr>
         <?php
             $sql = mysqli_query($conn,"SELECT * FROM `message`");
-            if($sql){
+            if(mysqli_num_rows($sql) != 0){
                 while($row = mysqli_fetch_assoc($sql)){ 
                     ?>
                     <tr>
@@ -105,6 +105,9 @@
                         <td><?=$row['msg']?></td>
                     </tr>
                 <?php }
+            }
+            else{
+                echo "<tr><td colspan='2' style='text-align: center;'>No messages found</td></tr>";
             }
         ?>
     </table>

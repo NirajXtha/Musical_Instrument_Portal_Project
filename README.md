@@ -52,8 +52,17 @@ This is an individual project created for the purpose of showcasing the understa
 <!-- Env Variables -->
 ### :key: Environment Variables
 
-To run this project, you will need to download the files directly from github as it is not hosted as of now.
+To run this project, you will need to download the files directly from github as it is not hosted as of now. Use Laragon, Xampp, Wampp or any other local server to run the project.
 
+For the database, you will need to create a database (music_portal) and import the sql file provided in the zip file.
+
+To login as admin, use the following credentials:
+- Username: admin
+- Password: admin
+
+To login as customer, use the following credentials:
+- Username: user
+- Password: user
 
 
 
@@ -78,13 +87,7 @@ Distributed under the no License. Free for anyone to use. Especially made for st
 <!-- Contact -->
 ## :handshake: Contact
 
-Niraj Shrestha - [@linkedin_handle](https://linkedin.com/in/NirajXtha) - nishrestha776@gmail.com
+Niraj Shrestha - [@linkedin](https://linkedin.com/in/NirajXtha) - nishrestha776@gmail.com
 
 Project Link: [https://github.com/NirajXtha/Musical_Instrument_Portal_Project](https://github.com/NirajXtha/Musical_Instrument_Portal_Project)
 
-
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
-
-
- - [W3 school](https://www.w3schools.com/)

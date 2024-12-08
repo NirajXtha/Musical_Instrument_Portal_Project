@@ -80,8 +80,7 @@ a{
 .nav{
     display: flex;
     justify-content: space-around;
-    align-items: center;   
-    padding: 0.5rem 2rem;
+    align-items: center;
 }
 
 .nav h1{
@@ -112,22 +111,6 @@ a{
     border-bottom: 2px solid #e74c3c;
 }
 
-.main{
-    width: 90vw;
-    height: 70vh; 
-    margin-left: 2.5em;
-    
-    /* border: 1px solid red; */
-}
-
-.side-nav{
-    /* border: 1px solid black; */
-    padding: 50px;  
-    width: 80vw;
-    height: 70vh; 
-    
-}
-
 .side-nav form{
     display: flex;
     flex-wrap: wrap;
@@ -145,8 +128,6 @@ a{
     background-image: url(../images/wp11930579-music-black-and-white-wallpapers.jpg);
     background-size: cover;
     background-blend-mode: exclusion;
-    box-shadow: 10px 10px 5px rgb(75, 89, 93);
-    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -156,18 +137,4 @@ a{
 .side-nav form input:hover{
     transform: translateY(-5px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-[data-theme="dark"] .header {
-    background: var(--nav-bg);
-}
-
-[data-theme="dark"] .side-nav form input {
-    background: var(--card-bg);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .logout-btn {
-    color: #ff6b6b;
 }

@@ -102,8 +102,8 @@
             <th colspan="2">Action</th>
         </tr>
         <?php
-            $sql = mysqli_query($conn,"SELECT * FROM `orders` join product on orders.pid = product.pid WHERE status = 'pending'");
-            if($sql){
+            $sql = mysqli_query($conn,"SELECT * FROM `orders` join product on orders.pid = product.pid");
+            if(mysqli_num_rows($sql) != 0){
                 while($row = mysqli_fetch_assoc($sql)){ 
                     $id = $row['order_id'];?>
                     <tr>
@@ -122,6 +122,9 @@
                         <td><a href="reject.php?type=order&id=<?=$id?>">Reject</a></td>
                     </tr>
                 <?php }
+            }
+            else{
+                echo "<tr><td colspan='13' style='text-align: center;'>No requests found</td></tr>";
             }
         ?>
     </table>
@@ -150,8 +153,8 @@
             <th colspan="2">Action</th>
         </tr>
         <?php
-            $sql = mysqli_query($conn,"SELECT DISTINCT * FROM `c_order` WHERE status = 'pending'");
-            if($sql){
+            $sql = mysqli_query($conn,"SELECT DISTINCT * FROM `c_order`");
+            if(mysqli_num_rows($sql) != 0){
                 while($row = mysqli_fetch_assoc($sql)){ 
                     $id = $row['id'];
                     $order = mysqli_query($conn,"SELECT DISTINCT * FROM cart join product on cart.pid = product.pid WHERE cart.status = 'payed' AND id = '$id'");
@@ -175,6 +178,9 @@
                         <td><a href="reject.php?type=cart&id=<?=$id?>">Reject</a></td>
                     </tr>
                 <?php }
+            }
+            else{
+                echo "<tr><td colspan='13' style='text-align: center;'>No requests found</td></tr>";
             }
         ?>
     </table>

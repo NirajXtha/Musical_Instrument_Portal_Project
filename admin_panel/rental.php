@@ -100,8 +100,8 @@
             <th colspan="2">Action</th>
         </tr>
         <?php
-            $sql = mysqli_query($conn,"SELECT * FROM `rent` join r_order on rent.username = r_order.username WHERE status = 'pending'");
-            if($sql){
+            $sql = mysqli_query($conn,"SELECT * FROM `rent` join r_order on rent.username = r_order.username");
+            if(mysqli_num_rows($sql) != 0){
                 while($row = mysqli_fetch_assoc($sql)){ 
                     $id = $row['id'];?>
                     <tr>
@@ -121,6 +121,9 @@
                         <td><a href="reject.php?type=rent&id=<?=$id?>">Reject</a></td>
                     </tr>
                 <?php }
+            }
+            else{
+                echo "<tr><td colspan='13' style='text-align: center;'>No requests found</td></tr>";
             }
         ?>
     </table>
