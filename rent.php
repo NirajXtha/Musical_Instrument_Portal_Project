@@ -4,9 +4,6 @@ include 'login/dbconfig.php';
 ?>
 <style>
     .contain{
-        background-image: url(images/beck.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
         display: flex;
         justify-content: center;
     }
@@ -23,7 +20,7 @@ include 'login/dbconfig.php';
         max-width: 35rem;
         min-width: 5rem;
         font-weight: 600;
-        color: white;     
+
         text-align: center;
     }
     .contain table tr td img{
@@ -33,8 +30,6 @@ include 'login/dbconfig.php';
     .contain table tr td a, .add{
         cursor: pointer;
         border: none;
-        background: transparent;
-        color: white;
         font-weight: 900;
     }
 </style>

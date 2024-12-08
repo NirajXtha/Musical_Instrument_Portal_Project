@@ -25,7 +25,7 @@
 
 <div class="contact-us" id="contactus">
         <h3>Contact Us</h3>
-        <h4>Call Us Now: +977 9841490485</h4>
+        <h4>Call Us Now: +977 9706230377</h4>
         <form action="index.php" method="POST">
             <textarea name="message" id="" cols="60" rows="8" placeholder="Send us a message..."></textarea><br>
             <input type="submit" value="Send" name="send" class="sendbtn">
@@ -36,11 +36,12 @@
 <div class="social">
         <p>© Copyright by Niraj Shrestha</p>
         <div class="socials">
-            <a href="#"><img src="images/facebook.png" alt=""></a>
-            <a href="#"><img src="images/instagram.png" alt=""></a>
-            <a href="#"><img src="images/github.png" alt=""></a>
+            <a href="https://www.facebook.com/niraj.shrestha.1865/"><img src="images/facebook.png" alt=""></a>
+            <a href="https://www.instagram.com/n_shrestha76/"><img src="images/instagram.png" alt=""></a>
+            <a href="https://github.com/NirajXtha"><img src="images/github.png" alt=""></a>
             <a href="#"><img src="images/discord.png" alt=""></a>
         </div>
 
 </div>
 
+<script src="theme.js"></script>

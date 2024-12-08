@@ -70,5 +70,6 @@
         <center><button type="submit">Log In</button></center>
     </form>
     </div>
+    <script src="../theme.js"></script>
 </body>
 </html>

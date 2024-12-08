@@ -1,5 +1,3 @@
-
-
 <?php
    
     include 'dbconfig.php';
@@ -9,32 +7,8 @@
 
 ?>
 <style>
-    .section{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        gap: 1rem;
-        /* margin: 10px 25px; */
-        padding: 20px 35px;
-        background-image: url(images/uwp3814594.jpeg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-weight: 700;
-        color: antiquewhite;
-    }
-    .view{
-        border: 1px solid;
-        border-radius: 20px;
-        margin: 0 10px;
-        display: grid;
-        text-align: center;
-        backdrop-filter: blur(10px);
-        padding-bottom: 10px;
-        max-width: 16rem;
-    }
-    .view a{
-        padding: 10px;
-        /* color: maroon; */
-    }
+    
+    
     .container{
         display: flex;
         flex-wrap: wrap;
@@ -60,21 +34,6 @@
         border: 1px solid;
         padding: 5px;
     }
-    form input{
-        background-color: #F96167;
-        width: 6em;
-        height: 2em;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-        margin: 0;
-        padding: 0;
-        font-weight: 500;
-        font-size: 15px;
-    }
-    form input:hover{
-        color: antiquewhite;
-    }
     .cards img{
         width: auto;
         max-width: 14rem;
@@ -82,9 +41,7 @@
         border-radius: 10px;
         border: none;
     }
-    .cards h2{
-        color: black;
-    }
+    
 </style>
 <div class="section">
     <?php

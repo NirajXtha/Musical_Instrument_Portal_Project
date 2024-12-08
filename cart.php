@@ -5,76 +5,62 @@ if(empty($_SESSION['username'])){
     header('location: login/login.php');
 }
 $user = $_SESSION['username'];
-
-
-
 ?>
 
-<style>
-    .cart_body{
-        color: white;
-    }
-    .remove{
-        color: white;
-    }
-    .remove:hover{
-        color: maroon;
-    }
-</style>
-
 <div class="cart_body">
-<div class="card">
-    <h2>Cart</h2>
-    <div class="cart">
-        <table>
-            <tr>
-                <th colspan="2">Description</th>
-                <th>Quantity</th>
-                <th>Action</th>
-                <th>Price</th>
-            </tr>
-        
-        <?php
-            $sql = mysqli_query($conn,"SELECT DISTINCT * FROM cart WHERE username = '$user' AND status = 'pending'");
-            if(mysqli_num_rows($sql) == 0){
-                echo "</table><h4>You have nothing add to your cart</h4>";
-            }
-            else{
-                while($p = mysqli_fetch_array($sql)){
-                    $query = mysqli_query($conn,"SELECT * FROM product WHERE pid = " . $p['pid']);
-                    if($row = mysqli_fetch_assoc($query)){?>
-                        <tr>
-                            <td><img src="images/<?=$row['img_url']?>" alt=""></td>
-                            <td><p><?=$row['product']?></p></td>
-                            <td><?=$p['qty']?></td>
-                            <td><form action="removecart.php?id=<?=$row['pid']?>" method="post">
-                                <input type="submit" value="Remove" name="rem" class="remove">
-                            </form></td>
-                            <td><p>Rs. <?=$p['price']?></p></td>
-                        </tr>
-                        
-                    <?php
-                    
-                    }
+    <div class="card">
+        <h2>Cart</h2>
+        <div class="cart">
+            <table>
+                <tr>
+                    <th colspan="2">Description</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                    <th>Price</th>
+                </tr>
+            
+            <?php
+                $sql = mysqli_query($conn,"SELECT DISTINCT * FROM cart WHERE username = '$user' AND status = 'pending'");
+                if(mysqli_num_rows($sql) == 0){
+                    echo "</table><h4 style='text-align: center;'>You have nothing added to your cart</h4>";
                 }
-                
-                
-            }
-        ?>
-        </table>
-        <?php
-            $sql = mysqli_query($conn,"SELECT DISTINCT * FROM cart WHERE username = '$user' AND status = 'pending'");
-            if(mysqli_num_rows($sql) != 0){ ?>
-                <p>Total: 
-                    <?php 
-                        $sql = mysqli_query($conn,"SELECT SUM(price) AS total FROM cart WHERE username = '$user' AND status = 'pending'");
-                        $result = mysqli_fetch_assoc($sql);
-                        echo $result['total'];
-                    ?>
-                </p>
-                <button type="submit" onmouseup="return purchaseCart()">Purchase All</button>
-            <?php }
-        ?>
+                else{
+                    while($p = mysqli_fetch_array($sql)){
+                        $cart_id = $p['id'];
+                        $query = mysqli_query($conn,"SELECT * FROM product WHERE pid = " . $p['pid']);
+                        if($row = mysqli_fetch_assoc($query)){?>
+                            <tr>
+                                <td><img src="images/<?=$row['img_url']?>" alt=""></td>
+                                <td><p><?=$row['product']?></p></td>
+                                <td><?=$p['qty']?></td>
+                                <td><form action="removecart.php?id=<?=$row['pid']?>" method="post">
+                                    <input type="submit" value="Remove" name="rem" class="remove">
+                                </form></td>
+                                <td><p>Rs. <?=$p['price']?></p></td>
+                            </tr>
+                            
+                        <?php
+                        
+                        }
+                    }
+                    
+                    
+                }
+            ?>
+            </table>
+            <?php
+                $sql = mysqli_query($conn,"SELECT DISTINCT * FROM cart WHERE username = '$user' AND status = 'pending'");
+                if(mysqli_num_rows($sql) != 0){ ?>
+                    <p>Total: 
+                        <?php 
+                            $sql = mysqli_query($conn,"SELECT SUM(price) AS total FROM cart WHERE username = '$user' AND status = 'pending'");
+                            $result = mysqli_fetch_assoc($sql);
+                            echo $result['total'];
+                        ?>
+                    </p>
+                    <button type="submit" onmouseup="return purchaseCart()">Purchase All</button>
+                <?php }
+            ?>
         </div><br><br>
         <h2 id="orders">Orders</h2>
         <div class="orders">
@@ -218,6 +204,6 @@ $user = $_SESSION['username'];
 <?php include 'footer.php'; ?>
 <script>
     function purchaseCart(){
-        location.assign("buy.php?id=&type=cart");
+        location.assign("buy.php?id=<?=$cart_id?>&type=cart");
     }
 </script>

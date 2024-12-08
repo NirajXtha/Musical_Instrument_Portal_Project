@@ -22,24 +22,41 @@
                 <li><a href="all.php?type=Keyboard">Keyboards</a></li><hr>
                 <li><a href="all.php?type=mic">Microphones</a></li><hr>
                 <li><a href="all.php?type=drum">Drums</a></li><hr>
-                <!-- <li><a href="all.php?type=">Flutes</a></li><hr> -->
                 <li><a href="all.php?type=bass">Bass</a></li><hr>
                 <li><a href="all.php?type=accessories">Accessories</a></li><hr>
             </ul>
         </div>
-        <!-- Product Carousel -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <div class="product-scroll">
+        
+        <div class="carousel-container">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <div class="product-scroll">
+                <div class="myslide" draggable="true">
+                    <a href="all.php?type=guitar"><img src="images/guitar_showcase.jpg" alt="Guitars"></a>
+                </div>
+                <div class="myslide" draggable="true">
+                    <a href="all.php?type=drum"><img src="images/drum_showcase.jfif" alt="Drums"></a>
+                </div>
+                <div class="myslide" draggable="true">
+                    <a href="all.php?type=Keyboard"><img src="images/key_showcasr.jfif" alt="Keyboards"></a>
+                </div>
+                <div class="myslide" draggable="true">
+                    <a href="all.php?type=midi"><img src="images/midi_showcase.jpeg" alt="MIDI"></a>
+                </div>
+                <div class="myslide" draggable="true">
+                    <a href="all.php?type=mic"><img src="images/mic_showcase.jfif" alt="Microphones"></a>
+                </div>
+            </div>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
             
-            <a href="all.php?type=guitar" class="myslide"><img src="images/guitar_showcase.jpg" alt=""></a>
-            <a href="all.php?type=drum" class="myslide"><img src="images/drum_showcase.jfif" alt=""></a>
-            <a href="all.php?type=Keyboard" class="myslide"><img src="images/key_showcasr.jfif" alt=""></a>
-            <a href="all.php?type=midi" class="myslide"><img src="images/midi_showcase.jpeg" alt=""></a>
-            <a href="all.php?type=mic" class="myslide"><img src="images/mic_showcase.jfif" alt=""></a>
-            <!-- <a href="all.php?type=headset" class="myslide"><img src="images/headset_showcase.jfif" alt=""></a> -->
-            
+            <!-- Add navigation dots -->
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
         </div>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div> <!-- product main div end -->
 
 
@@ -142,30 +159,123 @@
     }
 ?>
 <script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
+let slideIndex = 0;
+const slides = document.getElementsByClassName("myslide");
+const dots = document.getElementsByClassName("dot");
+let slideTimer;
+let dragStartX = 0;
+let dragEndX = 0;
 
-    // Next/previous controls
-    function plusSlides(n) {
-    showSlides(slideIndex += n);
+// Update dots
+function updateDots() {
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('active');
     }
+    dots[slideIndex - 1].classList.add('active');
+}
 
-    // Thumbnail image controls
-    function currentSlide(n) {
-    showSlides(slideIndex = n);
+function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
     }
+    
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    
+    slides[slideIndex - 1].classList.add('active');
+    updateDots();
+    
+    slideTimer = setTimeout(showSlides, 5000);
+}
 
-    function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("myslide");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+// Manual navigation
+function plusSlides(n) {
+    clearTimeout(slideTimer);
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
     }
-    slides[slideIndex-1].style.display = "block";
-    captionText.innerHTML = dots[slideIndex-1].alt;
+    
+    slideIndex += n;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
     }
+    if (slideIndex < 1) {
+        slideIndex = slides.length;
+    }
+    
+    slides[slideIndex - 1].classList.add('active');
+    updateDots();
+    
+    slideTimer = setTimeout(showSlides, 5000);
+}
+
+// Navigate to specific slide
+function currentSlide(n) {
+    clearTimeout(slideTimer);
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+    }
+    
+    slideIndex = n;
+    slides[slideIndex - 1].classList.add('active');
+    updateDots();
+    
+    slideTimer = setTimeout(showSlides, 5000);
+}
+
+// Drag functionality
+const carousel = document.querySelector('.carousel-container');
+
+carousel.addEventListener('dragstart', (e) => {
+    dragStartX = e.clientX;
+    clearTimeout(slideTimer);
+});
+
+carousel.addEventListener('dragend', (e) => {
+    dragEndX = e.clientX;
+    if (dragEndX < dragStartX - 50) { // Dragged left
+        plusSlides(1);
+    } else if (dragEndX > dragStartX + 50) { // Dragged right
+        plusSlides(-1);
+    }
+});
+
+// Touch functionality for mobile
+carousel.addEventListener('touchstart', (e) => {
+    dragStartX = e.touches[0].clientX;
+    clearTimeout(slideTimer);
+});
+
+carousel.addEventListener('touchend', (e) => {
+    dragEndX = e.changedTouches[0].clientX;
+    if (dragEndX < dragStartX - 50) { // Swiped left
+        plusSlides(1);
+    } else if (dragEndX > dragStartX + 50) { // Swiped right
+        plusSlides(-1);
+    }
+});
+
+// Pause on hover
+carousel.addEventListener('mouseenter', () => {
+    clearTimeout(slideTimer);
+});
+
+carousel.addEventListener('mouseleave', () => {
+    slideTimer = setTimeout(showSlides, 5000);
+});
+
+// Start slideshow
+if (slides.length > 0) {
+    slideIndex = 1;
+    slides[0].classList.add('active');
+    updateDots();
+    slideTimer = setTimeout(showSlides, 5000);
+}
 </script>
+
 </body>
 </html>

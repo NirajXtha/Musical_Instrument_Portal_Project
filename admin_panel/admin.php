@@ -72,3 +72,5 @@ session_start();
                   value="Upload">
      	
      </form> -->
+
+<script src="../theme.js"></script>

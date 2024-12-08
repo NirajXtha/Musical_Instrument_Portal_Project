@@ -2,6 +2,8 @@
     session_start();
     include 'dbconfig.php';
     $id = $_GET['id'];
+    $date = date("Y-m-d");
+    $time = date("H:i:s");
     if(empty($_SESSION['username']) && empty($_SESSION['password'])){
         // header("location: login/login.php");
         echo '<script>
@@ -31,12 +33,24 @@
             $price = $pp['sale_amt'] * $qty;
             
         }
-        
+        $cart = mysqli_query($conn,"SELECT * FROM `cart` WHERE username = '$user' AND status = 'pending'");
+        if(mysqli_num_rows($cart) != 0){
+            $cart_id = mysqli_fetch_assoc($cart)['id'];
+        }
+        else{
+            $cart_increment = mysqli_query($conn,"SELECT MAX(id) FROM cart");
+            if(mysqli_fetch_assoc($cart_increment)['MAX(id)'] == null){
+                $cart_id = 1;
+            }
+            else{
+                $cart_id = mysqli_fetch_assoc($cart_increment)['MAX(id)'] + 1;
+            }
+        }
         $check = mysqli_query($conn,"SELECT * FROM cart WHERE username = '$user' AND status = 'pending' AND pid = $id");
         if(mysqli_num_rows($check) > 0){
             echo '<script> alert("Already added to cart!"); window.history.back();</script>';
         }else{
-            $query = mysqli_query($conn,"INSERT INTO cart(username,pid,qty,price) VALUES('$user','$id',$qty,'$price')");
+            $query = mysqli_query($conn,"INSERT INTO cart(id,username,pid,qty,price,`date`,`time`) VALUES('$cart_id','$user','$id',$qty,'$price','$date','$time')");
             if($query){
                 echo '<script> alert("Successfully added to cart!"); window.history.back();</script>';
             }

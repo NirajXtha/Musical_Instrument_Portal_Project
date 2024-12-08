@@ -16,19 +16,23 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     color: antiquewhite;
+    background-color: #f5f6fa;
 }
 
 
 .form{
     
-    border: 5px double black;
+    border: none;
     border-radius: 15px;
     text-align: center;
     padding: 50px;
     width: 20em;
     height: auto;
     text-align: left;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form h1{
@@ -41,21 +45,35 @@ body{
     border-radius: 10px;
     border: none;
     padding: 3px 5px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.form input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
 button{
     width: 35%;
     height: 2.5em;
-    background-color: #ff2e2e;
+    background-color: #3498db;
     border-radius: 10px;
     color: black;
     cursor: pointer;
     /* border: none; */
+    transition: all 0.3s ease;
     
 }
 
 button:hover{
     color: antiquewhite;
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 a{
@@ -63,4 +81,19 @@ a{
 }
 a:hover{
     border-bottom: 3px solid;
+}
+
+[data-theme="dark"] .form {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .form input {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
 }
